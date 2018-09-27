@@ -1,8 +1,12 @@
-NormalParticle [] stars;//your code here
+PImage img1;
+PImage img2;
+Particle [] stars;//your code here
 void setup()
 {
   size(800, 800);
-  stars = new NormalParticle[40];
+  img1 = loadImage("thing1.png");
+  img2 = loadImage("thing2.png");
+  stars = new Particle[40];
   for (int i = 0; i < stars.length ; i++){
     stars[i] = new NormalParticle();
   }
@@ -24,7 +28,7 @@ class NormalParticle implements Particle
   NormalParticle(){
     posX = 400;
     posY = 400;
-    speed = Math.random()*20;
+    speed = (Math.random()*10+1);
     angle = (Math.random()*2*PI);
     col = (int)(Math.random()*100)+100;
   }
@@ -40,15 +44,32 @@ class NormalParticle implements Particle
 }
 interface Particle
 {
-	//your code here
+	public void move();
+  public void show();
+  //your code here
 }
-class OddballParticle implements Particle//uses an interface
+class OddballParticle implements Particle//asteroids?
 {
+  double posX, posY, speed, angle;
+  int col, size;
+  OddballParticle(){
+    posX = 400;
+    posY = 400;
+    speed = (Math.random()*5+1);
+    angle = (Math.random()*2*PI);
+    col = (int)(Math.random()*100)+100;
+    size = (int)(Math.random()*10)+5;
+  }
 	void move(){
+  posX += Math.cos(angle)*speed;
+  posY += Math.sin(angle)*speed;
+  
 }
-void show(){
-}
-//your code here
+  void show(){
+  noStroke();
+  image(img1, posX, posY, 74.7, 77.4);
+  
+
 }
 class JumboParticle //uses inheritance
 {
