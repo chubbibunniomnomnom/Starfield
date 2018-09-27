@@ -7,7 +7,7 @@ void setup()
   img1 = loadImage("thing1.png");
   img2 = loadImage("thing2.png");
   stars = new Particle[40];
-  for (int i = 0; i < stars.length ; i++){
+  for (int i = 0; i < stars.length ; i++){//initialize diffent instances of Oddball and Jumbo Particles
     stars[i] = new NormalParticle();
   }
   //your code here
@@ -28,7 +28,7 @@ class NormalParticle implements Particle
   NormalParticle(){
     posX = 400;
     posY = 400;
-    speed = (Math.random()*10+1);
+    speed = (Math.random()*50+1);
     angle = (Math.random()*2*PI);
     col = (int)(Math.random()*100)+100;
   }
@@ -55,7 +55,7 @@ class OddballParticle implements Particle//asteroids?
   OddballParticle(){
     posX = 400;
     posY = 400;
-    speed = (Math.random()*5+1);
+    speed = (Math.random()*20+1);
     angle = (Math.random()*2*PI);
     col = (int)(Math.random()*100)+100;
     size = (int)(Math.random()*10)+5;
@@ -63,15 +63,34 @@ class OddballParticle implements Particle//asteroids?
 	void move(){
   posX += Math.cos(angle)*speed;
   posY += Math.sin(angle)*speed;
-  
-}
+  }
   void show(){
   noStroke();
-  image(img1, posX, posY, 74.7, 77.4);
-  
-
+  image(img1, (float)posX, (float)posY, 74.7, 77.4);
+  }
 }
 class JumboParticle //uses inheritance
 {
-	//your code here
+  double posX, posY, speed, angle;
+  int col, size;
+	JumboParticle(){
+  posX = 400;
+  posY = 400;
+  speed = (Math.random()*10+1);
+  angle = (Math.random()*2*PI);
+  col = (int)(Math.random()*100)+100;
+  size = (int)(Math.random()*10)+5;
+}
+  public void move(){
+    posX += Math.cos(angle)*speed;
+    posY += Math.sin(angle)*speed;
+  }
+  public void show(){
+    noStroke();
+    if (Math.random()<0.5){
+      image(img2, (float)posX, (float)posY, 74.7, 77.4);
+    }else {
+    //the purple planet
+    }
+  }
 }
