@@ -11,9 +11,7 @@ void setup()
       stars[i] = new OddballParticle();
     }else if (i%51 == 0){
       stars[i] = new JumboParticle(Math.random());
-    } else if (i==300){
-      stars[i] = new Tardis();
-    }else{
+    } else {
     stars[i] = new NormalParticle();
     }
   }
@@ -117,30 +115,6 @@ class JumboParticle extends NormalParticle//planets
     noStroke();
     double maybe = Math.random();
     image(img, (float)posX, (float)posY, 74.7*size, 77.4*size);
-    size += ((Math.cos(angle)*speed)*0.005);
-  }
-}
-  class Tardis extends NormalParticle//planets
-{
-  double speed = 5;
-  PImage img;
-  float size;
-  Tardis(){  
-    img = loadImage("tardis.gif");
-  }
-  public void move(){
-    posX += Math.cos(angle)*speed;
-    posY += Math.sin(angle)*speed;
-    rotate(1/(2*PI));
-    if (posX >= 900|| posX <= -100 || posY >= 900 || posY<= -100){
-      posX = 400;
-      posY = 400;
-      size = 0.1;
-    }
-  }
-  public void show(){
-    noStroke();
-    image(img, (float)posX, (float)posY, 50*size, 49.6*size);
     size += ((Math.cos(angle)*speed)*0.005);
   }
 }
